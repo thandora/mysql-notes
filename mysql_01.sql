@@ -115,8 +115,8 @@ INSERT INTO <table> (<field_1>, <field_2>)
 VALUES (<field_1_value>, <field_2_value>);
 
 
--- Or if inserting values on ALL fields, the fields can be empty:
-INSERT INTO <table> ()
+-- Inserting values on ALL fields, the fields can be empty:
+INSERT INTO <table>
 VALUES (<field_1_value>, <field_2_value>);
 
 
@@ -140,7 +140,7 @@ VALUES ('Purrson', 3);
 SELECT * FROM cats;
 
 /*markdown
-## Null Values
+## Null and Default Values
 */
 
 /*markdown
@@ -168,11 +168,8 @@ CREATE TABLE cats2 (
     age INT NOT NULL
 );
 
-
-
-
 /*markdown
-### Default Values
+### Default Value for Fields
 */
 
 -- We can create a field in a table where a default value
@@ -193,6 +190,35 @@ INSERT INTO cats3 (age)
 VALUES (3);
 
 SELECT * FROM cats3;
+
+/*markdown
+### Inserting a Default Value
+We can insert the default value to a field by using the DEFAULT keyword during our INSERT statement. This will insert the default value into the field, or NULL if no default value is provided.
+
+
+
+
+
+Assuming a field is set to have a default and not null constraints, we can insert
+*/
+
+-- Assuming we have 2 fields in a table, and field_1 has the default value
+-- 'Magic String', and we do the following:
+INSERT INTO <table> (<field_1>, <field_2>)
+VALUES (DEFAULT, <field_2_value>);
+-- This will insert into field_1 the default value 'Magic String'.
+
+INSERT INTO magical_table (title, n_pages)
+VALUES (DEFAULT, 342);
+
+-- Example
+-- DEFAULT is useful specially useful when dealing with primary keys.
+-- Note: primary keys is discussed later on in this chapter.
+
+-- Assuming a table magical_table2 with fields book_id, title, n_pages;
+-- where book_id is a primary key field with auto increment:
+INSERT INTO magical_table2
+VALUES (DEFAULT, 'Gatsby The Great', 342);
 
 /*markdown
 ### NULL and DEFAULT
@@ -245,14 +271,12 @@ CREATE TABLE <table_name> (
 -- Example
 CREATE TABLE unique_cats (
     cat_id INT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    age INT NOT NULL
+    name VARCHAR(100),
 );
 
 CREATE TABLE unique_cats2 (
     cat_id INT,
-    name VARCHAR(100) NOT NULL,
-    age INT NOT NULL,
+    name VARCHAR(100),
     PRIMARY KEY (cat_id)
 );
 
@@ -267,14 +291,12 @@ CREATE TABLE <table_name> (
 );
 
 -- Example
-CREATE TABLE unique_cats (
+CREATE TABLE unique_cats3 (
     cat_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    age INT NOT NULL
+    name VARCHAR(100),
 );
 
 
 -- QUICK RUN CELL -- Run queries here
-INSERT INTO cats4 ()
-VALUES(null, 3);
+DESC unique_cats3;
 
