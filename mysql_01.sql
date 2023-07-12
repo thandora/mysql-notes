@@ -1,6 +1,7 @@
 /*markdown
 # MySQL 1 - The Basics
  This is my personal notes on MySQL. The concepts can be found on other SQL variants. Formatting and styling is loose and may evolve throughout my note taking. I might adopt this [SQL style guide](https://github.com/mattm/sql-style-guide) later.
+
 */
 
 /*markdown
@@ -11,7 +12,6 @@
 ### Database Basics
 */
 
--- -------------------------------------------------------------------------------------
 -- Display all databases in server
 SHOW DATABASES;
 
@@ -46,7 +46,6 @@ SELECT DATABASE()
 ### Creating Tables
 */
 
--- -------------------------------------------------------------------------------------
 -- Create table inside DB
 CREATE TABLE <table_name> (
     <field_1> <data_type_1>,
@@ -92,7 +91,6 @@ DESC dogs;
 ### Dropping (Deleting) Tables
 */
 
--- -------------------------------------------------------------------------------------
 -- Delete a table. Again, be careful of using DROP as there is no confirmation when using it.
 DROP TABLE <table_name>;
 
@@ -109,7 +107,6 @@ SHOW TABLES;
 ### Inserting (Adding) Data Into Table
 */
 
--- -------------------------------------------------------------------------------------
 -- Insert row into database table.
 INSERT INTO <table> (<field_1>, <field_2>)
 VALUES (<field_1_value>, <field_2_value>);
@@ -147,7 +144,6 @@ SELECT * FROM cats;
 ### NOT NULL
 */
 
--- -------------------------------------------------------------------------------------
 -- NULL Value
 -- NULL values are empty values or unknown values. We can use
 -- the keywords NOT NULL to forbid NULL values in our table.
@@ -192,13 +188,9 @@ VALUES (3);
 SELECT * FROM cats3;
 
 /*markdown
+
 ### Inserting a Default Value
 We can insert the default value to a field by using the DEFAULT keyword during our INSERT statement. This will insert the default value into the field, or NULL if no default value is provided.
-
-
-
-
-
 Assuming a field is set to have a default and not null constraints, we can insert
 */
 
@@ -246,6 +238,7 @@ Primary keys are unique identifiers for entries in a table. This is useful when 
 
 /*markdown
 Note that it is a convention for a primary key to be an integer data type since it is faster than strings and can be used in tandem with the AUTO_INCREMENT keyword. There are a few integer data types and they differ in the maximum number they can allow.
+
 */
 
 -- There are two ways to initialize a primary key field:
@@ -296,7 +289,5 @@ CREATE TABLE unique_cats3 (
     name VARCHAR(100),
 );
 
-
--- QUICK RUN CELL -- Run queries here
+-- QUICK RUN CELL -- Run queries for testing here.
 DESC unique_cats3;
-
