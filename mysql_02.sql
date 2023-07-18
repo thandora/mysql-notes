@@ -4,7 +4,62 @@ CRUD stands for **S**elect, **R**ead, **U**pdate, **D**elete.
 */
 
 /*markdown
-## Read - Using SELECT
+#TODO
+
+- Add Create section
+- Add Condition section (pref before CRUD) discussing comparators
+- Elaborate on CRUD
+*/
+
+/*markdown
+## **C**reate - Using INSERT
+
+In the context of CRUD, create is the operation of adding new data (record) in a database. This is done by using the INSERT INTO clause.  
+
+This section is taken from chapter 1 (mysql_01).
+*/
+
+-- Insert row into database table.
+INSERT INTO <table> (<field_1>, <field_2>)
+VALUES (<field_1_value>, <field_2_value>);
+
+-- Inserting values on ALL fields, the fields can be empty:
+INSERT INTO <table>
+VALUES (<field_1_value>, <field_2_value>);
+
+/*markdown
+The order in which the fields are specified matters when defining the values e.g. field_1_value value should correspond to the field_1 field.
+*/
+
+-- Example: Assuming we have a cats table with a name and age field:
+-- Insert a row in the cats table for a cat named Purrson, age 3.
+INSERT INTO cats (name, age)
+VALUES ('Purrson', 3);
+
+-- Alternatively, we can omit naming the fields if we plan to supply to all the fields:
+INSERT INTO cats
+VALUES ('Purrson', 3)
+
+/*markdown
+### Inserting Multiple Records
+*/
+
+-- Multiple insert
+INSERT INTO <table> (<field_a>, <field_b>)
+VALUES 
+    (<row_1a_val>, <row_1b_value>),
+    (<row_2a_val>, <row_2b_value>),
+    (<row_3a_val>, <row_3b_value>);
+
+-- Example:
+INSERT INTO cats (name, age)
+VALUES 
+    ('Purrson', 3),
+    ('Paws', 2),
+    ('Catson', 6);
+
+/*markdown
+## **R**ead - Using SELECT
 */
 
 -- We have worked with SELECT before when we wanted to view
@@ -79,11 +134,11 @@ SELECT
 FROM cats;
 
 /*markdown
-## Update - Using UPDATE
+## **U**pdate - Using UPDATE
 
 When we want to update records in the table, we use the `UPDATE` keyword and usually paired up with a `SET` and `WHERE` clause. Although `WHERE` is optional, it is usually specified to prevent all records to be modified.  
 
-**NOTE**: Just like deleting (discussed later in this chapter) records or tables, be careful when doing updating records since this cannot be undone. A good practice is to verify the records first by SELECT.
+**NOTE**: Just like deleting (discussed next) records or tables, be careful when doing updating records since this cannot be undone. A good practice is to verify the records first by SELECT.
 */
 
 UPDATE <table> 
@@ -102,7 +157,7 @@ WHERE
 /*markdown
 ### Update With Multiple Conditions - Using AND & OR
 
-If there is more than 1 condition, AND or OR can be used.
+If there is more than 1 condition, the AND & OR keywords can be used to join multiple conditions.
 */
 
 -- Both conditions needs to be true
@@ -131,6 +186,22 @@ SET
 WHERE
     name = 'Bluey' OR
     name = 'Reddy';
+
+/*markdown
+## **D**elete - Using DELETE
+
+To delete records (not tables), the DELETE keyword is used.
+*/
+
+DELETE FROM <table>
+WHERE
+    <condition>
+
+-- Example
+SELECT *
+FROM employees
+WHERE
+	last_name = 'Foobar';
 
 -- QUICK RUN CELL -- Run queries for testing here.
 SELECT name, age FROM cats;
