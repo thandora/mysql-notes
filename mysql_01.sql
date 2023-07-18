@@ -1,7 +1,12 @@
 /*markdown
 # MySQL 1 - The Basics
- This is my personal notes on MySQL. The concepts can be found on other SQL variants. Formatting and styling is loose and may evolve throughout my note taking. I might adopt this [SQL style guide](https://github.com/mattm/sql-style-guide) later.
+This is my personal notes on MySQL. The concepts can be found on other SQL variants. Formatting and styling is loose and may evolve throughout my note taking. I might adopt this [SQL style guide](https://github.com/mattm/sql-style-guide) later.
+*/
 
+/*markdown
+#TODO 
+
+- Fix formatting (CRLF LF bug on SQL notebook extension)
 */
 
 /*markdown
@@ -53,6 +58,7 @@ CREATE TABLE <table_name> (
 );
 -- Fields are column/headers.
 
+
 -- Show tables in currently active database
 SHOW TABLES;
 
@@ -75,15 +81,14 @@ CREATE TABLE dogs (
     age INT
 );
 
-CREATE TABLE dummy_field (
+CREATE TABLE wrong_table (
     name VARCHAR(25),
     number int
 );
 
+-- Show current tables in database
 SHOW TABLES;
-
 SHOW COLUMNS FROM dogs;
-
 -- Using DESCRIBE
 DESC dogs;
 
@@ -99,9 +104,7 @@ DROP TABLE <table_name>;
 DROP TABLE `<db_name>`.`<table_name>`;
 
 -- Example
-SHOW TABLES;
-DROP TABLE dummy_field;
-SHOW TABLES;
+DROP TABLE wrong_table;
 
 /*markdown
 ### Inserting (Adding) Data Into Table
@@ -111,18 +114,16 @@ SHOW TABLES;
 INSERT INTO <table> (<field_1>, <field_2>)
 VALUES (<field_1_value>, <field_2_value>);
 
-
 -- Inserting values on ALL fields, the fields can be empty:
 INSERT INTO <table>
 VALUES (<field_1_value>, <field_2_value>);
 
-
 -- Multiple insert
 INSERT INTO <table> (<field_a>, <field_b>)
-VALUES (<row_1a_val>, <row_1b_value>),
-        (<row_2a_val>, <row_2b_value>),
-        (<row_3a_val>, <row_3b_value>);
-
+VALUES 
+    (<row_1a_val>, <row_1b_value>),
+    (<row_2a_val>, <row_2b_value>),
+    (<row_3a_val>, <row_3b_value>);
 
 -- Show all (indicated *) columns of entries in a table.
 -- SELECT is further discussed later.
@@ -157,7 +158,6 @@ CREATE TABLE <table_name> (
 -- Example
 -- Create a cats table where the breed field, 
 -- and only the breed field, can be NULL.
-
 CREATE TABLE cats2 (
     name VARCHAR(100) NOT NULL,
     breed VARCHAR(100),
@@ -188,10 +188,11 @@ VALUES (3);
 SELECT * FROM cats3;
 
 /*markdown
-
 ### Inserting a Default Value
 We can insert the default value to a field by using the DEFAULT keyword during our INSERT statement. This will insert the default value into the field, or NULL if no default value is provided.
 Assuming a field is set to have a default and not null constraints, we can insert
+
+
 */
 
 -- Assuming we have 2 fields in a table, and field_1 has the default value
@@ -200,12 +201,14 @@ INSERT INTO <table> (<field_1>, <field_2>)
 VALUES (DEFAULT, <field_2_value>);
 -- This will insert into field_1 the default value 'Magic String'.
 
-INSERT INTO magical_table (title, n_pages)
-VALUES (DEFAULT, 342);
+
+
 
 -- Example
 -- DEFAULT is useful specially useful when dealing with primary keys.
 -- Note: primary keys is discussed later on in this chapter.
+INSERT INTO magical_table (title, n_pages)
+VALUES (DEFAULT, 342);
 
 -- Assuming a table magical_table2 with fields book_id, title, n_pages;
 -- where book_id is a primary key field with auto increment:
@@ -234,11 +237,9 @@ VALUES(NULL, 3);
 /*markdown
 ## Primary Keys
 Primary keys are unique identifiers for entries in a table. This is useful when two entries share the same value for a field. For example, in a cat's table, if there are two cats named Tabby, the primary key of each cat will allow us to distinguish between the two cats.
-*/
 
-/*markdown
+
 Note that it is a convention for a primary key to be an integer data type since it is faster than strings and can be used in tandem with the AUTO_INCREMENT keyword. There are a few integer data types and they differ in the maximum number they can allow.
-
 */
 
 -- There are two ways to initialize a primary key field:
