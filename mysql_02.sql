@@ -1,65 +1,111 @@
 /*markdown
-# MySQL 2 - CRUD Basics
+# MySQL 02 - CRUD Basics
 CRUD stands for **S**elect, **R**ead, **U**pdate, **D**elete.
 */
 
 /*markdown
 #TODO
 
-- Add Create section
+- ~~Add Create section~~
 - Add Condition section (pref before CRUD) discussing comparators
-- Elaborate on CRUD
+- Elaborate on CRUD (That it is in the context of a database. e.g. CREATING new records for a database. Not creating the table itself)
 */
 
 /*markdown
-## **C**reate - Using INSERT
+## Create: Using INSERT
 
 In the context of CRUD, create is the operation of adding new data (record) in a database. This is done by using the INSERT INTO clause.  
 
 This section is taken from chapter 1 (mysql_01).
 */
 
--- Insert row into database table.
-INSERT INTO <table> (<field_1>, <field_2>)
-VALUES (<field_1_value>, <field_2_value>);
+/*markdown
+### Adding Record(s)
+*/
 
--- Inserting values on ALL fields, the fields can be empty:
+-- Insert record (row) into database table.
+INSERT INTO <table> (
+    <field_1>, 
+    <field_2>
+)
+VALUES (
+    <field_1_value>, 
+    <field_2_value>
+);
+
+-- When inserting values on ALL fields, the fields can be omitted:
 INSERT INTO <table>
-VALUES (<field_1_value>, <field_2_value>);
+VALUES (
+    <field_1_value>, 
+    <field_2_value>
+);
 
 /*markdown
-The order in which the fields are specified matters when defining the values e.g. field_1_value value should correspond to the field_1 field.
+### Adding Record(s) - Example
 */
+
+-- The order in which the fields are specified matters when defining the values 
+-- e.g. field_1_value value should correspond to the field_1 field.
 
 -- Example: Assuming we have a cats table with a name and age field:
 -- Insert a row in the cats table for a cat named Purrson, age 3.
-INSERT INTO cats (name, age)
-VALUES ('Purrson', 3);
+INSERT INTO cats (
+    age,
+    name
+)
+VALUES (
+    3,
+    'Purrson'
+);
 
--- Alternatively, we can omit naming the fields if we plan to supply to all the fields:
+-- Alternatively, we can omit naming the fields if we plan to supply to all the fields.
+-- But being explicit just like above is preferred. (Explicit is better than implicit --Python Zen)
 INSERT INTO cats
-VALUES ('Purrson', 3)
+VALUES (
+    'Purrson',
+    3
+);
 
 /*markdown
-### Inserting Multiple Records
+### Adding Multiple Records
 */
 
 -- Multiple insert
-INSERT INTO <table> (<field_a>, <field_b>)
+INSERT INTO <table> (
+    <field_a>,
+    <field_b>
+)
 VALUES 
     (<row_1a_val>, <row_1b_value>),
     (<row_2a_val>, <row_2b_value>),
     (<row_3a_val>, <row_3b_value>);
 
--- Example:
-INSERT INTO cats (name, age)
+/*markdown
+### Adding Multiple Records - Example
+*/
+
+INSERT INTO cats (
+    name,
+    age
+)
+VALUES 
+    ('Purrson', 3),
+    ('Paws', 2),
+    ('Catson', 6);
+
+-- The above example can be further simplified:
+INSERT INTO cats
 VALUES 
     ('Purrson', 3),
     ('Paws', 2),
     ('Catson', 6);
 
 /*markdown
-## **R**ead - Using SELECT
+## Read: Using SELECT
+*/
+
+/*markdown
+### Selecting All Columns
 */
 
 -- We have worked with SELECT before when we wanted to view
@@ -69,21 +115,38 @@ SELECT * FROM <table>;
 -- columns from the table, and in this case, all the entries since
 -- no constraints is specified.
 
--- Example
+/*markdown
+### Selecting All Columns - Example
+*/
+
 SELECT * FROM cats;
 
 /*markdown
-### Selecting Specific Fields/Columns
+### Selecting Specific Fields
 */
 
 -- Now instead of using *, we can use the field/column names, 
 -- separated by commas.
-SELECT field_1, field_2, field_etc, FROM <table>;
+SELECT 
+    field_1, 
+    field_2, 
+    field_etc
+FROM <table>;
+
+/*markdown
+### Selecting Specific Fields - Example
+*/
 
 -- Example
-SELECT name, age FROM cats;
+SELECT 
+    name,
+    age
+FROM cats;
 
-SELECT name, breed FROM cats;
+SELECT 
+    name,
+    breed
+FROM cats;
 
 /*markdown
 ### Filtering Using WHERE
@@ -100,6 +163,10 @@ SELECT
 FROM <table> 
 WHERE 
     <condition>;
+
+/*markdown
+### Filtering Using WHERE - Example
+*/
 
 -- Example
 SELECT 
@@ -127,6 +194,12 @@ SELECT
     <field_2> 
 FROM <table>
 
+/*markdown
+### Aliases - Example
+
+During a query, the output field name can be set by using the AS keyword. This is purely on the output table and does not change the field name in the actual database.
+*/
+
 -- Example
 SELECT 
     cat_id AS 'Kitten ID',
@@ -134,11 +207,15 @@ SELECT
 FROM cats;
 
 /*markdown
-## **U**pdate - Using UPDATE
+## Update - Using UPDATE
 
 When we want to update records in the table, we use the `UPDATE` keyword and usually paired up with a `SET` and `WHERE` clause. Although `WHERE` is optional, it is usually specified to prevent all records to be modified.  
 
 **NOTE**: Just like deleting (discussed next) records or tables, be careful when doing updating records since this cannot be undone. A good practice is to verify the records first by SELECT.
+*/
+
+/*markdown
+### Updating A Field
 */
 
 UPDATE <table> 
@@ -147,7 +224,10 @@ SET
 WHERE 
     <condition>;
 
--- Example
+/*markdown
+### Updating A Field - Example
+*/
+
 UPDATE cats
 SET
     age = 5
@@ -155,7 +235,7 @@ WHERE
     name = 'Bluey';
 
 /*markdown
-### Update With Multiple Conditions - Using AND & OR
+### Update With Multiple Conditions
 
 If there is more than 1 condition, the AND & OR keywords can be used to join multiple conditions.
 */
@@ -177,6 +257,10 @@ WHERE
     <condition_1> OR
     <condition_2>;
 
+/*markdown
+### Update With Multiple Conditions - Example
+*/
+
 -- Example: Supposed we know that the cats Bluey and Reddy are
 -- tabby cats (previously unlabeled), and we want to update the
 -- table to reflect that.
@@ -188,20 +272,35 @@ WHERE
     name = 'Reddy';
 
 /*markdown
-## **D**elete - Using DELETE
+## Delete - Using DELETE
 
 To delete records (not tables), the DELETE keyword is used.
+*/
+
+/*markdown
+### Deleting Records
 */
 
 DELETE FROM <table>
 WHERE
     <condition>
 
--- Example
+/*markdown
+### Deleting Records - Example
+*/
+
+-- Good practice is to confirm record to be deleted first.
 SELECT *
-FROM employees
+FROM cats
 WHERE
-	last_name = 'Foobar';
+	name = 'Dodger';
+
+
+-- Delete. Just change SELECT * to DELETE
+DELETE FROM cats
+WHERE
+	name = 'Dodger';
+
 
 -- QUICK RUN CELL -- Run queries for testing here.
 SELECT name, age FROM cats;
