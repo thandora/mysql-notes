@@ -5,7 +5,6 @@ CRUD stands for **S**elect, **R**ead, **U**pdate, **D**elete.
 
 /*markdown
 #TODO
-
 - ~~Add Create section~~
 - Add Condition section (pref before CRUD) discussing comparators
 - Elaborate on CRUD (That it is in the context of a database. e.g. CREATING new records for a database. Not creating the table itself)
@@ -13,9 +12,7 @@ CRUD stands for **S**elect, **R**ead, **U**pdate, **D**elete.
 
 /*markdown
 ## Create: Using INSERT
-
 In the context of CRUD, create is the operation of adding new data (record) in a database. This is done by using the INSERT INTO clause.  
-
 This section is taken from chapter 1 (mysql_01).
 */
 
@@ -46,7 +43,6 @@ VALUES (
 
 -- The order in which the fields are specified matters when defining the values 
 -- e.g. field_1_value value should correspond to the field_1 field.
-
 -- Example: Assuming we have a cats table with a name and age field:
 -- Insert a row in the cats table for a cat named Purrson, age 3.
 INSERT INTO cats (
@@ -150,7 +146,6 @@ FROM cats;
 
 /*markdown
 ### Filtering Using WHERE
-
 The WHERE keyword can be used to filter our results using conditions. Do note that the condition does not have to be a field in the SELECT clause.
 */
 
@@ -185,7 +180,6 @@ WHERE
 
 /*markdown
 ### Aliases
-
 During a query, the output field name can be set by using the AS keyword. This is purely on the output table and does not change the field name in the actual database.
 */
 
@@ -196,7 +190,6 @@ FROM <table>
 
 /*markdown
 ### Aliases - Example
-
 During a query, the output field name can be set by using the AS keyword. This is purely on the output table and does not change the field name in the actual database.
 */
 
@@ -208,9 +201,7 @@ FROM cats;
 
 /*markdown
 ## Update - Using UPDATE
-
 When we want to update records in the table, we use the `UPDATE` keyword and usually paired up with a `SET` and `WHERE` clause. Although `WHERE` is optional, it is usually specified to prevent all records to be modified.  
-
 **NOTE**: Just like deleting (discussed next) records or tables, be careful when doing updating records since this cannot be undone. A good practice is to verify the records first by SELECT.
 */
 
@@ -236,7 +227,6 @@ WHERE
 
 /*markdown
 ### Update With Multiple Conditions
-
 If there is more than 1 condition, the AND & OR keywords can be used to join multiple conditions.
 */
 
@@ -247,7 +237,6 @@ SET
 WHERE 
     <condition_1> AND
     <condition_2>;
-
 
 -- Either 1 or all conditions can be true
 UPDATE <table> 
@@ -273,7 +262,6 @@ WHERE
 
 /*markdown
 ## Delete - Using DELETE
-
 To delete records (not tables), the DELETE keyword is used.
 */
 
@@ -295,12 +283,10 @@ FROM cats
 WHERE
 	name = 'Dodger';
 
-
 -- Delete. Just change SELECT * to DELETE
 DELETE FROM cats
 WHERE
 	name = 'Dodger';
-
 
 -- QUICK RUN CELL -- Run queries for testing here.
 SELECT name, age FROM cats;
