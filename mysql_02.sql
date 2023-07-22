@@ -133,12 +133,6 @@ FROM <table>;
 ### Selecting Specific Fields - Example
 */
 
--- Example
-SELECT 
-    name,
-    age
-FROM cats;
-
 SELECT 
     name,
     breed
@@ -163,13 +157,6 @@ WHERE
 ### Filtering Using WHERE - Example
 */
 
--- Example
-SELECT 
-    name, age
-FROM cats
-WHERE
-    age = 4;
-
 -- Notice that the age in the WHERE claude is not in the SELECT clause.
 -- Condition of a field is not dependent on fields specified in SELECT.
 SELECT
@@ -193,7 +180,6 @@ FROM <table>
 During a query, the output field name can be set by using the AS keyword. This is purely on the output table and does not change the field name in the actual database.
 */
 
--- Example
 SELECT 
     cat_id AS 'Kitten ID',
     name 
