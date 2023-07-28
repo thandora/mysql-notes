@@ -141,3 +141,7 @@ LOWER(<string>);
 SELECT UPPER('Hello World');
 
 SELECT LOWER('Hello World');
+
+
+-- QUICK RUN CELL -- Run queries for testing here.
+SHOW TABLES;

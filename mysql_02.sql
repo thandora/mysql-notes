@@ -274,5 +274,5 @@ DELETE FROM cats
 WHERE
 	name = 'Dodger';
 
--- QUICK RUN CELL -- Run queries for testing here.
+-- QUICK RUN CELL -- Run statements for testing here.
 SELECT name, age FROM cats;
