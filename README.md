@@ -22,6 +22,11 @@ By default, the notes are opened in the default plaintext format. To open in not
 
 ## Using Notes
 
-SQL Notebook allows us to run individual cells, which is useful for seeing what each statement do. Some cells contains syntax only, and is not supposed to be run.
+The actual notes are the ones named mysql_xx.sql (e.g. mysql_04.sql). SQL Notebook allows us to run individual cells, which is useful for seeing what each statement do. Some cells contains syntax only, and is not supposed to be run.
 
 To run cells, a database connection needs to be configured first, which can be done through the SQL Notebook view on VSCode's side bar (left side by default).
+
+## TODO
+
+- Add table of contents
+- Add content
