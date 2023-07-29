@@ -1,13 +1,6 @@
 /*markdown
 # MySQL 02 - CRUD Basics
-CRUD stands for **S**elect, **R**ead, **U**pdate, **D**elete.
-*/
-
-/*markdown
-#TODO
-- ~~Add Create section~~
-- Add Condition section (pref before CRUD) discussing comparators
-- Elaborate on CRUD (That it is in the context of a database. e.g. CREATING new records for a database. Not creating the table itself)
+CRUD stands for **S**elect, **R**ead, **U**pdate, **D**elete. CRUD in most context refers to the operations on the records (rows or data) in the table like in this chapter, but CRUD can also apply for tables in a database.
 */
 
 /*markdown
@@ -140,7 +133,7 @@ FROM cats;
 
 /*markdown
 ### Filtering Using WHERE
-The WHERE keyword can be used to filter our results using conditions. Do note that the condition does not have to be a field in the SELECT clause.
+The WHERE keyword can be used to filter our results using conditions that evaluate to 1 (TRUE). The condition does not have to be a field in the SELECT clause.
 */
 
 -- We can write this in a single line, but as we get longer queries,
@@ -154,16 +147,48 @@ WHERE
     <condition>;
 
 /*markdown
+## Conditions
+In MySQL, conditions are commonly done by comparisons. These comparisons can either evaluate to 1 (TRUE), 0 (FALSE), or NULL. The comparators are: 
+
+```
+Name 	Description
+> 	Greater than operator
+>= 	Greater than or equal operator
+< 	Less than operator
+<>, != 	Not equal operator
+<= 	Less than or equal operator
+<=> 	NULL-safe equal to operator
+= 	Equal operator 
+```
+*/
+
+/*markdown
 ### Filtering Using WHERE - Example
 */
 
 -- Notice that the age in the WHERE claude is not in the SELECT clause.
 -- Condition of a field is not dependent on fields specified in SELECT.
 SELECT
-    name, breed
+    name, 
+    breed
 FROM cats
 WHERE
     age = 4;
+
+/*markdown
+## WHERE - Multiple Conditions
+There can be multiple conditions in a WHERE clause.
+*/
+
+-- Both conditions needs to be true
+WHERE 
+    <condition_1> AND
+    <condition_2>;
+
+-- Either 1 or all conditions can be true
+WHERE 
+    <condition_1> OR
+    <condition_2>;
 
 /*markdown
 ### Aliases
