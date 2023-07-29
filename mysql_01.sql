@@ -1,6 +1,6 @@
 /*markdown
 # MySQL 01 - Overview
-This overview will show quick examples on some MySQL commands and features. Formatting and styling may be inconsistent at first and may evolve overtime as I adopt this [SQL style guide](https://github.com/mattm/sql-style-guide).
+This overview will show quick examples on some MySQL commands and features.
 */
 
 /*markdown
