@@ -8,20 +8,21 @@ Functions are reusable set of codes that can be run. A function can take an inpu
 In this chapter, we will be working the following data. Run the SQL statement inside a database (e.g. book_shop) to add the sample entries.
 */
 
-    CREATE TABLE books 
-    	(
-    		book_id INT AUTO_INCREMENT,
-    		title VARCHAR(100),
-    		author_fname VARCHAR(100),
-    		author_lname VARCHAR(100),
-    		released_year INT,
-    		stock_quantity INT,
-    		pages INT,
-    		PRIMARY KEY(book_id)
-    	);
-     
-    INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)
-    VALUES
+CREATE TABLE books 
+    (
+        book_id INT AUTO_INCREMENT,
+        title VARCHAR(100),
+        author_fname VARCHAR(100),
+        author_lname VARCHAR(100),
+        released_year INT,
+        stock_quantity INT,
+        pages INT,
+        PRIMARY KEY(book_id)
+    );
+    
+INSERT INTO books
+    (title, author_fname, author_lname, released_year, stock_quantity, pages)
+VALUES
     ('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),
     ('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),
     ('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),
@@ -172,8 +173,6 @@ LOWER(<string>);
 SELECT UPPER('Hello World');
 
 SELECT LOWER('Hello World');
-
-
 
 -- QUICK RUN CELL -- Run queries for testing here.
 SHOW TABLES;
