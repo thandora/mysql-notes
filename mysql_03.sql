@@ -40,6 +40,10 @@ VALUES
     ('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),
     ('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);
 
+-- Before we start using our database,
+-- its a good idea to investigate our table first
+SELECT * FROM books;
+
 /*markdown
 ## CHAR_LENGTH()
 Returns the number of characters in a string. Not to be confused with LENGTH(), which returns the size in bytes of a string
