@@ -144,8 +144,8 @@ LIMIT <n>;
 -- When two numbers are provided, LIMIT becomes a slice. 
 <SELECT STATEMENT>
 LIMIT <start_index>, <n>;
--- Where start_index is where the slice starts, and n is max
--- number of rows.
+-- Where start_index is the index where the slice starts,
+-- and n is number of rows (maximum).
 
 /*markdown
 ## LIMIT - Example
