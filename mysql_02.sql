@@ -10,7 +10,7 @@ This section is taken from chapter 1 (mysql_01).
 */
 
 /*markdown
-### Adding Record(s)
+### Adding Record
 */
 
 -- Insert record (row) into database table.
@@ -31,7 +31,7 @@ VALUES (
 );
 
 /*markdown
-### Adding Record(s) - Example
+### Adding Record - Example
 */
 
 -- The order in which the fields are specified matters when defining the values 
@@ -94,7 +94,7 @@ VALUES
 */
 
 /*markdown
-### Selecting All Columns
+### Selecting All Fields
 */
 
 -- We have worked with SELECT before when we wanted to view
@@ -105,7 +105,7 @@ SELECT * FROM <table>;
 -- no constraints is specified.
 
 /*markdown
-### Selecting All Columns - Example
+### Selecting All Fields - Example
 */
 
 SELECT * FROM cats;
@@ -147,7 +147,7 @@ WHERE
     <condition>;
 
 /*markdown
-## Conditions
+#### Conditions
 In MySQL, conditions are commonly done by comparisons. These comparisons can either evaluate to 1 (TRUE), 0 (FALSE), or NULL. The comparators are: 
 
 ```
@@ -176,7 +176,7 @@ WHERE
     age = 4;
 
 /*markdown
-## WHERE - Multiple Conditions
+### WHERE - Multiple Conditions
 There can be multiple conditions in a WHERE clause.
 */
 
@@ -211,7 +211,7 @@ SELECT
 FROM cats;
 
 /*markdown
-## Update - Using UPDATE
+## Update: Using UPDATE
 When we want to update records in the table, we use the `UPDATE` keyword and usually paired up with a `SET` and `WHERE` clause. Although `WHERE` is optional, it is usually specified to prevent all records to be modified.  
 **NOTE**: Just like deleting (discussed next) records or tables, be careful when doing updating records since this cannot be undone. A good practice is to verify the records first by SELECT.
 */
@@ -272,7 +272,7 @@ WHERE
     name = 'Reddy';
 
 /*markdown
-## Delete - Using DELETE
+## Delete: Using DELETE
 To delete records (not tables), the DELETE keyword is used.
 */
 
