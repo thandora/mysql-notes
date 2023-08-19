@@ -84,7 +84,7 @@ FROM books
 
 /*markdown
 ## ORDER BY
-ORDER BY sorts the results in ascending (default) or descending order. If more than 1 column is specified to ORDER BY, the results are sorted in the order it appears in the ORDER BY CLASE. 
+ORDER BY sorts the results in ascending (default) or descending order. If more than 1 column is specified to ORDER BY, the results are sorted in the order it appears in the ORDER BY CLAUSE. 
 - The order criteria doesn't have to be in the SELECT clause.
 - ASC can be omitted, rows are ordered in ascending by default.
 */
