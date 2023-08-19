@@ -28,5 +28,56 @@ To run cells, a database connection needs to be configured first, which can be d
 
 ## TODO
 
-- Add table of contents
-- Add content
+Placeholder
+
+## Table of Contents
+
+Index will refer to the suffix of the .sql file.
+(e.g.) 04 means that the topic is discussed under mysql_04.sql
+
+- **01 - Overview**
+  - Database
+    - Database Basics
+  - Tables
+    - Creating Tables
+    - Other Table Commands
+    - Inserting (Adding) Data to Table
+    - Dropping (Deleting) Table
+  - Null and Default Values
+    - NOT NULL Keyword
+    - Field Default Value
+  - Primary Key
+    - Creating a Primary Key Field
+    - Auto Increment for Primary Keys
+- **02 - CRUD Basics**
+  - Create: Using INSERT
+    - Adding a Record
+    - Adding Multiple Records
+  - Read: Using SELECT
+    - Selecting All Fields
+    - Selecting Specific Fields
+    - Filtering Using WHERE
+      - Conditions
+    - WHERE - Multiple Conditions
+    - Aliases
+  - Update: Using UPDATE
+    - Updating a Field
+    - Update With Multiple Conditions
+  - Delete: Using DELETE
+    - Deleting Records
+- **03 - String Functions**
+  - Data Set
+  - CHAR_LENGTH()
+  - CONCAT() and CONCAT_WS()
+  - SUBSTRING()
+  - Combining Multiple Functions
+  - REPLACE()
+  - UPPER() and LOWER()
+- **04 -  Refining Selection**
+  - Data Set
+  - DISTINCT
+  - ORDER BY
+  - LIMIT
+  - LIKE
+- **05 - Aggregate Functions**
+  - Data Set
