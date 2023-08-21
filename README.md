@@ -28,7 +28,7 @@ To run cells, a database connection needs to be configured first, which can be d
 
 ## TODO
 
-Placeholder
+- Replace the word "field" to "column"
 
 ## Table of Contents
 
