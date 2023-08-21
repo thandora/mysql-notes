@@ -42,3 +42,124 @@ VALUES
     ('10% Happier', 'Dan', 'Harris', 2014, 29, 256), 
     ('fake_book', 'Freida', 'Harris', 2001, 287, 428),
     ('Lincoln In The Bardo', 'George', 'Saunders', 2017, 1000, 367);
+
+/*markdown
+## Counting Rows: Using COUNT()
+`COUNT()` is a function used to get the number of rows of a `SELECT` query. Its usage is flexible, as we will see later.
+*/
+
+-- General syntax:
+COUNT(<expression>)
+
+-- Returns the number of non-NULL rows from <column>
+SELECT 
+    COUNT(<column>)
+FROM <table>;
+
+-- Returns the number of all (including NULL) rows in the table
+SELECT 
+    COUNT(*)
+FROM <table>;
+
+-- Returns the distinct number of rows.
+SELECT
+    COUNT(DISTINCT <column>)
+FROM <table>;
+
+-- Returns the count per group. GROUP BY is discussed next.
+SELECT 
+    <column_a>,
+    COUNT(<column>)
+FROM <table>
+GROUP BY
+    <column_a>;
+
+/*markdown
+## Counting Rows - Example
+*/
+
+-- The number of book titles in the table.
+-- Counts duplicates, if any.
+-- Does not count NULL values.
+SELECT 
+    COUNT(title)
+FROM books;
+
+-- The number of rows in the table, inluding NULL rows.
+-- Counts duplicates, if any.
+SELECT
+    COUNT(*)
+FROM books;
+
+-- The number of author last names (author_lname)
+SELECT
+    COUNT(author_lname)
+FROM books;
+
+-- Number of unique last names
+SELECT
+    COUNT(DISTINCT author_lname)
+FROM books;
+
+-- Notice how there are less unique last names.
+
+-- Number of books per author. Grouping is discussed next.
+SELECT 
+    author_lname,
+    author_fname,
+    COUNT(title)
+FROM books
+GROUP BY
+    author_lname,
+    author_fname;
+
+-- Without the author_fname, Harris Dan and Harris Freida
+-- will be counted as one entry, and will have a COUNT of 2.
+
+/*markdown
+## Grouping: GROUP BY
+`GROUP BY` is a keyword used to group entries together. This is most commonly used to apply aggregate functions by group, instead of every row in the query.
+
+- A NULL value is considered a valid group.
+*/
+
+SELECT
+    <columns>
+FROM <table>
+GROUP BY
+    <columns>;
+
+-- In the SELECT clause, atleast 1 column should be
+-- an aggregate function, by default.
+
+/*markdown
+## Grouping: GROUP BY - Example
+GROUP BY is a keyword used to group entries together. This is most commonly used to apply aggregate functions by group, instead of every row in the query.
+*/
+
+-- The number of books by published by year.
+-- In this example, the rows are grouped by released_year,
+-- and then the aggregate function COUNT() is applied per group.
+SELECT
+    released_year,
+    COUNT(title)
+FROM books
+GROUP BY
+    released_year
+ORDER BY
+    released_year;
+
+-- The number of pages written per author.
+SELECT
+    author_lname,
+    author_fname,
+    SUM(pages)
+FROM books
+GROUP BY
+    author_lname,
+    author_fname
+ORDER BY
+    SUM(pages) DESC;
+
+-- QUICK RUN CELL -- Run queries for testing here.
+SHOW TABLES;
