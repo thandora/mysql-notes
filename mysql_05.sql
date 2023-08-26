@@ -115,6 +115,7 @@ GROUP BY
 
 -- Without the author_fname, Harris Dan and Harris Freida
 -- will be counted as one entry, and will have a COUNT of 2.
+-- This is dicussed later in the "Grouping By Multiple Columns" section.
 
 /*markdown
 ## Grouping: GROUP BY
@@ -133,7 +134,7 @@ GROUP BY
 -- an aggregate function, by default.
 
 /*markdown
-## Grouping: GROUP BY - Example
+### Example
 GROUP BY is a keyword used to group entries together. This is most commonly used to apply aggregate functions by group, instead of every row in the query.
 */
 
@@ -149,6 +150,52 @@ GROUP BY
 ORDER BY
     released_year;
 
+/*markdown
+### Grouping By Multiple Columns
+When grouping data with a single criteria, we might not get the full picture that query is showing us. Grouping by multiple criteria gives us a more specific and clearer picture on what the data indicates.
+*/
+
+-- Let us group our data by author_lname.
+-- Take notice that the count for "Harris" is 2. We might assume
+-- from this that an author with the last name Harris has two
+-- published books.
+SELECT
+    author_lname,
+    COUNT(*)
+FROM books
+GROUP BY
+    author_lname;
+
+-- Now grouping by multiple columns, author_lname and author_lname.
+-- As we can see, our "Harris" group is now separated in two unique
+-- rows. This might seem weird at first, but we can surmise that
+-- these two Harris are actually different from each other, as
+-- we will see in the example.
+SELECT
+    author_lname,
+    COUNT(*)
+FROM books
+GROUP BY
+    author_lname,
+    author_fname;
+
+-- The same as the previous query, with the added author_fname
+-- in the SELECT clause. This reveals that there are indeed
+-- 2 authors having the last name of Harris. This shows that
+-- grouping by more columns gives us more detail on our queries.
+SELECT
+    author_lname,
+    author_fname,
+    COUNT(*)
+FROM books
+GROUP BY
+    author_lname,
+    author_fname;
+
+/*markdown
+### Grouping By Multiple Columns - Example
+*/
+
 -- The number of pages written per author.
 SELECT
     author_lname,
@@ -160,6 +207,160 @@ GROUP BY
     author_fname
 ORDER BY
     SUM(pages) DESC;
+
+/*markdown
+## MIN() and MAX()
+Returns the minimum or the maximum of a column. It also works on non-numerical columns, just like sorting by ORDER BY does.
+*/
+
+SELECT
+    MIN(<column>)
+FROM <table>;
+
+/*markdown
+### Example
+*/
+
+SELECT
+    MIN(released_year)
+FROM books;
+
+SELECT
+    MAX(pages)
+FROM books;
+
+/*markdown
+### On Grouped Data
+Just like other aggregate functions, MIN() and MAX() can be used on grouped data.
+*/
+
+SELECT
+    <column_a>,
+    MIN(<column>)
+FROM <table>
+GROUP BY 
+    <column_a>;
+
+/*markdown
+### On Grouped Data - Example
+*/
+
+-- Return the number of pages of longest book by release year.
+SELECT
+    released_year,
+    MAX(pages)
+FROM books
+GROUP BY 
+    released_year;
+
+-- Aggregated book data grouped by author.
+SELECT 
+	CONCAT(author_fname, ' ',author_lname) as author,
+	COUNT(*) as books_written, 
+	MAX(released_year) AS latest_release,
+	MIN(released_year)  AS earliest_release,
+    MAX(pages) AS longest_page_count
+FROM books 
+GROUP BY 
+    author;
+
+/*markdown
+## Subqueries
+A subquery is an SQL query within another query. It can be used to be more specific on your selection. Some things about subqueries:
+- The innermost subquery is evaluated first, working its way to the outermost query.
+- A subquery may occur in :
+  - A SELECT clause
+  - A FROM clause
+  - A WHERE clause
+- Usually added within the WHERE Clause of another SQL SELECT statement.
+- Can be used inside a SELECT, INSERT, UPDATE, or DELETE statement.
+- Can be inside another subquery.
+*/
+
+-- Example 1
+-- Find the book(s) with the most pages by using a subquery.
+SELECT
+    title,
+    pages
+FROM books
+WHERE
+    pages = (
+        SELECT 
+            MAX(pages)
+        FROM books
+    );
+
+-- What is important to know where is the WHERE clause. It sets up the
+-- filter to return the pages of a certain value. This value is evaluated
+-- by our subquery, which is tasked to find the maximum value of the pages column.
+
+-- In steps, this is what happens:
+-- The subquery returns a single numerical value (maximum value of pages column).
+-- The subquery result is then passed to the WHERE clause of the main query.
+-- The main query is finally evaluated.
+
+-- Example 2
+-- Find the earliest released book(s) by using a subquery.
+SELECT
+    title,
+    released_year
+FROM books
+WHERE
+    released_year = (
+        SELECT
+            MIN(released_year)
+        FROM books
+    );
+
+/*markdown
+## SUM()
+SUM() takes the sum of a column. It only adds up numerical values and ignores strings (that has no numerical character) and NULL values.
+*/
+
+SELECT
+    SUM(<column>)
+FROM <table>;
+
+/*markdown
+## SUM() - Example
+*/
+
+-- Total number of pages per release year, and the number of books.
+SELECT
+    released_year,
+    SUM(pages),
+    COUNT(*)
+FROM books
+GROUP BY
+    released_year;
+
+/*markdown
+## AVG()
+Takes the average of a columnn. Ignores strings (that has no numerical character) and NULL values.
+*/
+
+SELECT
+    AVG(<column>)
+FROM <table>;
+
+/*markdown
+## AVG() - Example
+*/
+
+-- Average number of pages of all the books.
+SELECT
+    AVG(pages)
+FROM books;
+
+-- Average length by release year.
+SELECT 
+    released_year, 
+    FORMAT(AVG(pages), 0) as 'avg pages', 
+    COUNT(*)
+FROM books
+GROUP BY released_year;
+-- FORMAT dictates the number of digits after the decimal point,
+-- in this case, 0.
 
 -- QUICK RUN CELL -- Run queries for testing here.
 SHOW TABLES;
