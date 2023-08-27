@@ -81,3 +81,11 @@ Index will refer to the suffix of the .sql file.
   - LIKE
 - **05 - Aggregate Functions**
   - Data Set
+  - Counting Rows: Using COUNT()
+  - Grouping: GROUP BY
+    - Grouping by Multiple Columns
+  - MIN() and MAX()
+    - On Grouped Data
+  - Subqueries
+  - SUM()
+  - AVG()
