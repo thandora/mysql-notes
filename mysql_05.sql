@@ -133,6 +133,19 @@ GROUP BY
 -- In the SELECT clause, atleast 1 column should be
 -- an aggregate function, by default.
 
+-- Just like ORDER BY, GROUP BY has can specify group criteria
+-- by integers
+SELECT
+    <columns>
+FROM <table>
+GROUP BY
+    <n_1>,
+    <n_2>,
+    <...>;
+-- Where nth is column order specified in the SELECT clause.
+-- e.g. first column in SELECT clause is 1
+
+
 /*markdown
 ### Example
 GROUP BY is a keyword used to group entries together. This is most commonly used to apply aggregate functions by group, instead of every row in the query.
@@ -149,6 +162,17 @@ GROUP BY
     released_year
 ORDER BY
     released_year;
+
+-- The same as previous example, but using integers for specifying groups
+-- and sorting.
+SELECT
+    released_year,
+    COUNT(title)
+FROM books
+GROUP BY
+    1
+ORDER BY
+    1;
 
 /*markdown
 ### Grouping By Multiple Columns
