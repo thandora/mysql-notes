@@ -30,5 +30,62 @@ To know about all of the data types and how they work, read the official MySQL d
 
 /*markdown
 ## Numeric Data Types
-Numerical values are stored in fixed-size memory. M
+Numerical values are stored in fixed-size memory. This means that choosing the right type for your data is crucial, especially the larger your database is.
 */
+
+/*markdown
+### Integers
+Integers are the whole numbers (negative, zero, and positive).
+
+Here are all the integer types, their value range, and storage requirements:
+![Integer type storage table](img/int-table.png)
+For example, for the `INT` type we usually used, is stored for 4 bytes of memory and can be a value between -2,147,483,648 and 2,147,483,647, including 0.
+
+By default, integers are signed, meaning they can have values from the negative integers to the positive ones. To assign an integer to have only zero and the positive part, we can use the unsigned keyword when declaring our integer type:
+*/
+
+<column> <int_type> UNSIGNED
+
+-- Declaration example
+age TINYINT UNSIGNED
+
+-- This makes our default range of -128 to +127 (TINYINT range) into 0 to +255 (which is more appropriate for our age column).
+-- When a decimal number is inserted to an integer type column, the number is rounded and then stored.
+
+/*markdown
+### Fixed-Point (Exact Value) - DECIMAL, NUMERIC
+`Decimal` and `numeric` types are equivalent to each other. They store exact numeric data values and used when it is important to preserve exact precision, like with monetary data.
+
+- Maximum number of digits is 65.
+*/
+
+/*markdown
+![Decimal params](img/decimal-params.png)
+*/
+
+<column> DECIMAL(P, S)
+-- Or
+<column> DECIMAL(P)
+-- which is equivalent to `DECIMAL(P, 0)`
+
+-- Where P is the precision (number of significant digits) 
+-- S is the scale (number of digits after the decimal point)
+
+-- Declaration example
+salary DECIMAL(5, 2)
+-- In this case, our salary column can hold a value between -999.99 to +999.99
+
+/*markdown
+### Floating-Point (Approximate Value) - FLOAT, DOUBLE
+`Float` and `double` types are used to represent approximate numeric values. `FLOAT` is for single-precision (4 bytes), while `DOUBLE` is for double-precision (8 bytes).
+*/
+
+-- Floating-point can be declared with or without an argument.
+<column> Float
+-- or
+<column> Float(P)
+
+-- Where P is the precision in bits. MySQL uses this value to determine
+-- whether to use FLOAT or DOUBLE for the resulting data type.
+-- If P is 0 - 24, then FLOAT is used
+-- If P is 25 - 53, then DOUBLE is used.
