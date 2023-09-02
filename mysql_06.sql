@@ -37,8 +37,8 @@ Numerical values are stored in fixed-size memory. This means that choosing the r
 ### Integers
 Integers are the whole numbers (negative, zero, and positive).
 
-Here are all the integer types, their value range, and storage requirements:
-![Integer type storage table](img/int-table.png)
+Here are all the integer types, their value range, and storage requirements:  
+![Integer type storage table](img/int-table.png)  
 For example, for the `INT` type we usually used, is stored for 4 bytes of memory and can be a value between -2,147,483,648 and 2,147,483,647, including 0.
 
 By default, integers are signed, meaning they can have values from the negative integers to the positive ones. To assign an integer to have only zero and the positive part, we can use the unsigned keyword when declaring our integer type:
