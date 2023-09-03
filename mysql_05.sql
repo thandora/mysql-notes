@@ -4,7 +4,7 @@ Aggregate functions are numerical functions that take in a range of values and o
 */
 
 /*markdown
-## Data Set
+## Dataset
 We will still be using the previous books data set. The data is provided below if you don't have the previous data.
 */
 
@@ -144,6 +144,7 @@ GROUP BY
     <...>;
 -- Where nth is column order specified in the SELECT clause.
 -- e.g. first column in SELECT clause is 1
+
 
 
 /*markdown

@@ -4,7 +4,7 @@ Using SELECT and WHERE, we have learned how to create queries for our databases.
 */
 
 /*markdown
-## Data Set
+## Dataset
 The data used in this chapter will be mostly the same with the previous chapter's, with added records.
 */
 

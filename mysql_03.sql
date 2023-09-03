@@ -4,7 +4,7 @@ Functions are reusable set of codes that can be run. A function can take an inpu
 */
 
 /*markdown
-## Data Set
+## Dataset
 In this chapter, we will be working the following data. Run the SQL statement inside a database (e.g. book_shop) to add the sample entries.
 */
 
