@@ -66,7 +66,7 @@ Index will refer to the suffix of the .sql file.
   - Delete: Using DELETE
     - Deleting Records
 - **03 - String Functions**
-  - Data Set
+  - Dataset
   - CHAR_LENGTH()
   - CONCAT() and CONCAT_WS()
   - SUBSTRING()
@@ -74,13 +74,13 @@ Index will refer to the suffix of the .sql file.
   - REPLACE()
   - UPPER() and LOWER()
 - **04 -  Refining Selection**
-  - Data Set
+  - Dataset
   - DISTINCT
   - ORDER BY
   - LIMIT
   - LIKE
 - **05 - Aggregate Functions**
-  - Data Set
+  - Dataset
   - Counting Rows: Using COUNT()
   - Grouping: GROUP BY
     - Grouping by Multiple Columns
@@ -89,3 +89,27 @@ Index will refer to the suffix of the .sql file.
   - Subqueries
   - SUM()
   - AVG()
+- **06 - Data Types**
+  - Dataset
+  - String Data Types
+    - CHAR
+    - VARCHAR
+  - Numeric Data Types
+    - Integers
+    - Fixed-Point (Exact Value)
+    - Floating-Point (Approximate Value)
+  - Date and Time Data Types
+    - DATE
+    - TIME
+    - DATETIME
+    - TIMESTAMP
+  - Date and Time Functions
+    - CURDATE(), CURTIME(), and NOW()
+    - Date Functions
+    - Time Functions
+  - Date Arithmetic
+    - Arithmetic Functions
+    - DATE_ADD() and DATE_SUB()
+  - DEFAULT and ON UPDATE for DATETIME
+    - DEFAULT
+    - ON UPDATE (Keyword)
