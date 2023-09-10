@@ -157,9 +157,6 @@ Just like strings that have functions that deals with strings, date and time dat
 
 /*markdown
 ### CURDATE(), CURTIME(), and NOW()
-*/
-
-/*markdown
 `CURDATE()` - synonym for `CURRENT_DATE()`:  
 Returns the current DATE in `YYYY-MM-DD` or `YYYYMMDD` format, depending on whether the function is used in string or numeric context.
 
