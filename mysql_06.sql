@@ -1,10 +1,10 @@
 /*markdown
 # MySQL 06 - Data Types
-Data can be categorised into one of the data types. These types can be further categorised according to the range of the values it can have. These range can be numerical (for numbers), or the length of a string (for characters).
+Data can be categorised into one of the data types. These types can be further categorised according to the range of the values it can have (the larger the range, the more memory it takes up).
 
 In this chapter, we will be discovering the different some of the common data types including the ones we have been previously using, as well as new ones. We will also be learning about some functions exclusive to some data types.
 
-To know about all of the data types and how they work, read the official MySQL docs [Data Types](https://dev.mysql.com/doc/refman/8.0/en/data-types.html).
+To know about all of the data types and their nuances, read the official MySQL docs [Data Types](https://dev.mysql.com/doc/refman/8.0/en/data-types.html).
 */
 
 /*markdown
