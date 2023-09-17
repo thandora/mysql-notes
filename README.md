@@ -113,3 +113,18 @@ Index will refer to the suffix of the .sql file.
   - DEFAULT and ON UPDATE for DATETIME
     - DEFAULT
     - ON UPDATE (Keyword)
+- **07 - Constraints and Modifying Tables**
+  - Dataset
+  - Constraints
+    - NOT NULL
+    - UNIQUE
+    - CHECK
+      - Named Check
+    - Multiple Column Constraints
+  - ALTER TABLE
+    - Adding Columns
+    - Dropping Columns
+    - Renaming Columns
+    - Modifying Columns
+    - Adding Check Constraint
+    - Removing Check Constraint
