@@ -72,7 +72,6 @@ By default, a check constraint is named as follows:
 Where n is the nth check constraint in the table.  
 
 A named check is important because it allows you to get a quick overview of what was wrong in your data in case you fail to meet the check (if your check was appropriately named). It also gives you a way to identify a check and allow you to add or remove it later using an ALTER TABLE statement (will be discussed later on in this chapter).
-
 */
 
 -- Syntax
@@ -214,7 +213,7 @@ ADD
     CONSTRAINT positive_age CHECK (age >= 0);
 
 /*markdown
-#### Removing Check Constraint
+### Removing Check Constraint
 */
 
 ALTER TABLE <Table>
