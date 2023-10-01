@@ -89,22 +89,133 @@ You can manipulate the query to achieve other types of joins outside this 4.
 */
 
 /*markdown
-Draft
-- Relationships
-  - 1 to 1
-    - uncommon
-  - 1 to many
-    - most common
-    - e.g. books and reviews relationship
-  - many to many
-    - pretty common
-    - e.g. books and authors
-- Joins
-  - left
-  - right
-  - inner
-  - outer
-- Keys
-  - foreign
-  - primary
+### Cross Join
+Cross join is not commonly used as it just returns a (redundant) view of all the rows from both tables.
 */
+
+SELECT
+    *
+FROM
+    customers
+    CROSS JOIN orders;
+
+-- This is similar if you query everything from both tables, i.e.
+SELECT
+    *
+FROM
+    customers,
+    orders;
+
+/*markdown
+### Inner Join
+Inner joins are useful when we only want to records that appear in both tables.
+*/
+
+SELECT
+    *
+FROM
+    customers
+    JOIN orders ON orders.customer_id = customers.id;
+
+-- If a column is ambiguous, like the 'id' column we have which exists in both table,
+-- we should specify the table where it came from: <table>.<column>
+SELECT
+    orders.id as order_id,
+    first_name,
+    last_name,
+    order_date,
+    amount
+FROM
+    customers
+    JOIN orders ON orders.customer_id = customers.id;
+
+-- Joins is more powerful when paired with groupings and aggregate functions
+SELECT
+    first_name,
+    last_name,
+    SUM(amount) AS total
+FROM
+    customers
+    JOIN orders ON orders.customer_id = customers.id
+GROUP BY
+    first_name,
+    last_name
+ORDER BY
+    total DESC;
+
+/*markdown
+### Left Join
+Useful if we want to display the original table (left), matched with the table on the right. If a row from the left table does not match with anything on the right, the columns of the right will be **NULL**.  
+
+Left and right table are declared this way:
+
+```
+FROM
+    <left_table>
+    LEFT JOIN <right_table> ...
+```
+*/
+
+SELECT
+    *
+FROM
+    customers
+    LEFT JOIN orders ON orders.customer_id = customers.id;
+-- There might be NULL values on the first column (customers.id). This is
+-- only a visual bug caused by the SQL notebook extension.
+
+-- Example where the 'customers' table is the left table.
+SELECT
+    first_name,
+    last_name,
+    order_date,
+    amount
+FROM
+    customers
+    LEFT JOIN orders ON orders.customer_id = customers.id;
+
+-- Example where the 'orders' table is the left table.
+SELECT
+    order_date,
+    amount,
+    first_name,
+    last_name
+FROM
+    orders
+    LEFT JOIN customers ON orders.customer_id = customers.id;
+
+-- Example with aggregate function. 
+SELECT
+    first_name,
+    last_name,
+    IFNULL(SUM(amount), 0) AS money_spent
+FROM
+    customers
+    LEFT JOIN orders ON customers.id = orders.customer_id
+GROUP BY
+    first_name,
+    last_name
+ORDER BY
+    money_spent DESC;
+
+/*markdown
+### Right Join
+Functionally same as left join, except this time all rows are displayed from the right table instead of the left.
+
+Left and right table are declared this way:
+
+```
+FROM
+    <left_table>
+    RIGHT JOIN <right_table> ...
+```
+*/
+
+SELECT
+    first_name,
+    last_name,
+    order_date,
+    amount
+FROM
+    customers
+    RIGHT JOIN orders ON customers.id = orders.customer_id;
